@@ -1,112 +1,174 @@
 @import 'tailwindcss';
 
+:root {
+  --bg: #05070f;
+  --bg-elevated: #0f1628;
+  --panel: #121a2b;
+  --border: #1f293f;
+  --border-strong: #2a3650;
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-tertiary: #94a3b8;
+  --accent: #d97757;
+  --accent-strong: #ea7c54;
+}
+
+body {
+  background:
+    radial-gradient(1200px 800px at 50% -10%, rgba(217, 119, 87, 0.08), transparent),
+    radial-gradient(800px 600px at 85% 5%, rgba(148, 163, 184, 0.05), transparent),
+    var(--bg);
+  color: var(--text-primary);
+  font-feature-settings: 'ss01', 'ss02', 'cv01', 'cv02';
+  letter-spacing: -0.01em;
+}
+
+.bg-abstract {
+  background-image: radial-gradient(circle at 20px 20px, rgba(217, 119, 87, 0.06) 1px, transparent 1px);
+  background-size: 28px 28px;
+  opacity: 0.4;
+  mix-blend-mode: screen;
+}
+
 .fc {
-  --fc-border-color: #1e293b;
+  --fc-border-color: var(--border);
   --fc-page-bg-color: transparent;
-  --fc-neutral-bg-color: #0b1220;
-  --fc-neutral-text-color: #cbd5e1;
-  --fc-today-bg-color: rgba(99, 102, 241, 0.08);
-  --fc-now-indicator-color: #f43f5e;
-  --fc-button-bg-color: #1e293b;
-  --fc-button-border-color: #334155;
-  --fc-button-text-color: #e2e8f0;
-  --fc-button-hover-bg-color: #334155;
-  --fc-button-hover-border-color: #475569;
-  --fc-button-active-bg-color: #4f46e5;
-  --fc-button-active-border-color: #4f46e5;
-  --fc-list-event-hover-bg-color: #1e293b;
-  color: #e2e8f0;
+  --fc-neutral-bg-color: rgba(15, 22, 40, 0.6);
+  --fc-neutral-text-color: var(--text-secondary);
+  --fc-today-bg-color: rgba(217, 119, 87, 0.09);
+  --fc-now-indicator-color: var(--accent);
+  --fc-button-bg-color: var(--panel);
+  --fc-button-border-color: var(--border);
+  --fc-button-text-color: var(--text-primary);
+  --fc-button-hover-bg-color: rgba(217, 119, 87, 0.25);
+  --fc-button-hover-border-color: rgba(217, 119, 87, 0.5);
+  --fc-button-active-bg-color: var(--accent);
+  --fc-button-active-border-color: var(--accent);
+  --fc-list-event-hover-bg-color: rgba(15, 22, 40, 0.8);
+  color: var(--text-primary);
   font-size: 0.85rem;
 }
 
 .fc .fc-toolbar {
   gap: 0.5rem;
   flex-wrap: wrap;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.9rem;
 }
 
 .fc .fc-toolbar-title {
-  font-size: 1.15rem;
-  color: #f1f5f9;
+  font-size: 1.1rem;
+  color: var(--text-primary);
+  font-weight: 500;
+  letter-spacing: -0.015em;
 }
 
 .fc .fc-button {
-  border-radius: 0.5rem;
+  border-radius: 9999px;
+  border-width: 1px;
   box-shadow: none;
   text-transform: capitalize;
-  padding: 0.35rem 0.75rem;
+  padding: 0.35rem 0.9rem;
   font-size: 0.8rem;
+  transition: all 120ms ease;
 }
 
 .fc .fc-button-primary:not(:disabled).fc-button-active,
 .fc .fc-button-primary:not(:disabled):active {
-  background-color: #4f46e5;
-  border-color: #4f46e5;
+  background-color: var(--accent);
+  border-color: var(--accent);
+  color: #fff7f2;
 }
 
 .fc-theme-standard td,
 .fc-theme-standard th {
-  border-color: #1e293b;
+  border-color: var(--border);
 }
 
 .fc .fc-scrollgrid {
-  border-radius: 0.75rem;
+  border-radius: 1rem;
   overflow: hidden;
-  border-color: #1e293b;
+  border: 1px solid var(--border);
+  background: radial-gradient(600px 400px at 50% -20%, rgba(217, 119, 87, 0.05), transparent),
+    linear-gradient(180deg, rgba(18, 26, 43, 0.9) 0%, rgba(8, 12, 24, 0.8) 100%);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
 }
 
 .fc .fc-col-header-cell {
-  background: rgba(30, 41, 59, 0.5);
+  background: linear-gradient(180deg, rgba(31, 41, 63, 0.8) 0%, rgba(18, 26, 43, 0.7) 100%);
 }
 
-.fc .fc-col-header-cell-cushion,
-.fc .fc-daygrid-day-number {
-  padding: 4px 6px;
-  color: #94a3b8;
+.fc .fc-col-header-cell-cushion {
+  padding: 6px 10px;
+  color: var(--text-tertiary);
   font-weight: 500;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
 }
 
-.fc .fc-daygrid-day.fc-day-today,
-.fc .fc-timegrid-col.fc-day-today {
-  background: rgba(99, 102, 241, 0.08);
-}
-
-.fc .fc-daygrid-day-top {
-  flex-direction: row;
+.fc .fc-daygrid-day-number {
+  color: var(--text-tertiary);
+  padding: 6px 10px;
 }
 
 .fc .fc-day-other .fc-daygrid-day-number {
-  color: #475569;
+  color: rgba(148, 163, 184, 0.45);
+}
+
+.fc .fc-day-today .fc-daygrid-day-number {
+  color: #fff7f2;
+}
+
+.fc .calendar-today-header .fc-col-header-cell-cushion {
+  border: 1.5px solid rgba(217, 119, 87, 0.8);
+  border-radius: 9999px;
+  padding: 2px 12px;
+  margin: 6px auto;
+  color: var(--text-primary);
+}
+
+.fc .fc-daygrid-day.fc-day-today {
+  background: radial-gradient(180px 120px at 50% -10%, rgba(217, 119, 87, 0.12), transparent);
+}
+
+.fc .calendar-today-cell {
+  box-shadow: inset 0 0 0 1px rgba(217, 119, 87, 0.7);
+  border-radius: 0.8rem;
+}
+
+.fc .fc-daygrid-day.fc-day-today .fc-daygrid-day-number {
+  background: var(--accent);
+  color: #fff7f2;
+  border-radius: 9999px;
+  padding: 3px 8px;
+  margin: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22px;
+  font-weight: 500;
 }
 
 .fc .fc-event {
-  border-radius: 8px;
-  border-width: 1px;
-  border-style: solid;
-  padding: 1px 4px;
+  border-radius: 10px;
+  border: 1px solid rgba(217, 119, 87, 0.6);
+  background: radial-gradient(120% 120% at 0% 0%, rgba(217, 119, 87, 0.25), transparent),
+    rgba(18, 26, 43, 0.7);
+  backdrop-filter: blur(2px);
+  padding: 1px 6px;
   font-size: 0.75rem;
   cursor: pointer;
   overflow: hidden;
+  box-shadow: 0 1px 0 rgba(15, 22, 40, 0.8);
 }
 
 .fc .fc-event-main {
   padding: 1px 0;
 }
 
-.fc .fc-daygrid-event-dot {
-  display: none;
-}
-
-.fc .fc-timegrid-event {
-  box-shadow: none;
-}
-
-.fc .fc-daygrid-event {
-  white-space: normal;
-}
-
 .fc .task-completed {
-  opacity: 0.6;
+  opacity: 0.55;
 }
 
 .fc .task-completed .fc-event-title {
@@ -118,6 +180,23 @@
 }
 
 .fc .fc-timegrid-slot-label-cushion {
-  color: #64748b;
+  color: var(--text-tertiary);
   font-size: 0.7rem;
+}
+
+.fc .fc-timegrid-axis-cushion,
+.fc .fc-timegrid-slot-label-cushion {
+  color: var(--text-tertiary);
+}
+
+.fc .fc-timegrid-col.fc-day-today {
+  background: radial-gradient(220px 160px at 50% -10%, rgba(217, 119, 87, 0.1), transparent);
+}
+
+.fc .fc-scrollgrid-section-header > * {
+  border-top: none;
+}
+
+.fc .fc-toolbar-chunk .fc-button-group {
+  gap: 4px;
 }

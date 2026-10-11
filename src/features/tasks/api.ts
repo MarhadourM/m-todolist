@@ -41,23 +41,6 @@ export async function fetchScheduledTasks(userId: string): Promise<Task[]> {
   return data as Task[]
 }
 
-export async function fetchDueReminders(userId: string): Promise<Task[]> {
-  const now = new Date()
-  const since = new Date(now.getTime() - 24 * 60 * 60 * 1000)
-  const { data, error } = await supabase
-    .from('tasks')
-    .select('*')
-    .eq('user_id', userId)
-    .eq('completed', false)
-    .not('remind_at', 'is', null)
-    .lte('remind_at', now.toISOString())
-    .gte('remind_at', since.toISOString())
-    .order('remind_at', { ascending: true })
-
-  if (error) throw error
-  return data as Task[]
-}
-
 export async function createTask(
   userId: string,
   listId: string | null,
@@ -79,10 +62,7 @@ export async function createTask(
 export async function updateTask(
   id: string,
   patch: Partial<
-    Pick<
-      Task,
-      'title' | 'notes' | 'due_at' | 'remind_at' | 'priority' | 'completed' | 'list_id'
-    >
+    Pick<Task, 'title' | 'notes' | 'due_at' | 'priority' | 'completed' | 'list_id'>
   >,
 ): Promise<Task> {
   const { data, error } = await supabase

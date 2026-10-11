@@ -38,7 +38,7 @@ export function Sidebar({ onSignOut, onNavigate }: SidebarProps) {
   }
 
   return (
-    <aside className="flex h-full w-72 flex-col border-r border-slate-800 bg-slate-900">
+    <aside className="flex h-full w-72 flex-col border-r border-[var(--border)] bg-[linear-gradient(180deg,rgba(18,26,43,0.9)_0%,rgba(8,12,24,0.85)_100%)] backdrop-blur-sm">
       <div className="px-4 py-4">
         <span className="text-lg font-bold text-slate-100">m-todolist</span>
       </div>
