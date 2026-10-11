@@ -5,6 +5,7 @@ import { HashRouter } from 'react-router-dom'
 import './index.css'
 import App from './App.tsx'
 import { AuthProvider } from './auth/AuthProvider'
+import { RealtimeSync } from './components/RealtimeSync'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -19,6 +20,7 @@ createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
+        <RealtimeSync />
         <HashRouter>
           <App />
         </HashRouter>
