@@ -1,1 +1,123 @@
 @import 'tailwindcss';
+
+.fc {
+  --fc-border-color: #1e293b;
+  --fc-page-bg-color: transparent;
+  --fc-neutral-bg-color: #0b1220;
+  --fc-neutral-text-color: #cbd5e1;
+  --fc-today-bg-color: rgba(99, 102, 241, 0.08);
+  --fc-now-indicator-color: #f43f5e;
+  --fc-button-bg-color: #1e293b;
+  --fc-button-border-color: #334155;
+  --fc-button-text-color: #e2e8f0;
+  --fc-button-hover-bg-color: #334155;
+  --fc-button-hover-border-color: #475569;
+  --fc-button-active-bg-color: #4f46e5;
+  --fc-button-active-border-color: #4f46e5;
+  --fc-list-event-hover-bg-color: #1e293b;
+  color: #e2e8f0;
+  font-size: 0.85rem;
+}
+
+.fc .fc-toolbar {
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.75rem;
+}
+
+.fc .fc-toolbar-title {
+  font-size: 1.15rem;
+  color: #f1f5f9;
+}
+
+.fc .fc-button {
+  border-radius: 0.5rem;
+  box-shadow: none;
+  text-transform: capitalize;
+  padding: 0.35rem 0.75rem;
+  font-size: 0.8rem;
+}
+
+.fc .fc-button-primary:not(:disabled).fc-button-active,
+.fc .fc-button-primary:not(:disabled):active {
+  background-color: #4f46e5;
+  border-color: #4f46e5;
+}
+
+.fc-theme-standard td,
+.fc-theme-standard th {
+  border-color: #1e293b;
+}
+
+.fc .fc-scrollgrid {
+  border-radius: 0.75rem;
+  overflow: hidden;
+  border-color: #1e293b;
+}
+
+.fc .fc-col-header-cell {
+  background: rgba(30, 41, 59, 0.5);
+}
+
+.fc .fc-col-header-cell-cushion,
+.fc .fc-daygrid-day-number {
+  padding: 4px 6px;
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+.fc .fc-daygrid-day.fc-day-today,
+.fc .fc-timegrid-col.fc-day-today {
+  background: rgba(99, 102, 241, 0.08);
+}
+
+.fc .fc-daygrid-day-top {
+  flex-direction: row;
+}
+
+.fc .fc-day-other .fc-daygrid-day-number {
+  color: #475569;
+}
+
+.fc .fc-event {
+  border-radius: 8px;
+  border-width: 1px;
+  border-style: solid;
+  padding: 1px 4px;
+  font-size: 0.75rem;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.fc .fc-event-main {
+  padding: 1px 0;
+}
+
+.fc .fc-daygrid-event-dot {
+  display: none;
+}
+
+.fc .fc-timegrid-event {
+  box-shadow: none;
+}
+
+.fc .fc-daygrid-event {
+  white-space: normal;
+}
+
+.fc .task-completed {
+  opacity: 0.6;
+}
+
+.fc .task-completed .fc-event-title {
+  text-decoration: line-through;
+}
+
+.fc .fc-timegrid-slot {
+  height: 2.25rem;
+}
+
+.fc .fc-timegrid-slot-label-cushion {
+  color: #64748b;
+  font-size: 0.7rem;
+}

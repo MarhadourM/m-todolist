@@ -69,7 +69,7 @@ export function TaskList({
     <TaskItem
       key={task.id}
       task={task}
-      listName={showList ? listsById?.[task.list_id ?? '']?.name : undefined}
+      list={showList ? listsById?.[task.list_id ?? ''] : undefined}
       onDragStart={setDragId}
       onDrop={handleDrop}
     />

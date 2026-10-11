@@ -3,6 +3,7 @@ import { useAuth } from '../../auth/useAuth'
 import {
   createTask,
   deleteTask,
+  fetchScheduledTasks,
   fetchTasksByList,
   fetchTodayTasks,
   updateTask,
@@ -21,6 +22,7 @@ export function taskKeys(userId: string) {
     all,
     byList: (listId: string) => [...all, 'list', listId] as const,
     today: () => [...all, 'today'] as const,
+    scheduled: () => [...all, 'scheduled'] as const,
   }
 }
 
@@ -38,6 +40,15 @@ export function useTodayTasks() {
   return useQuery({
     queryKey: taskKeys(userId).today(),
     queryFn: () => fetchTodayTasks(userId),
+    enabled: userId !== '',
+  })
+}
+
+export function useScheduledTasks() {
+  const userId = useUserId()
+  return useQuery({
+    queryKey: taskKeys(userId).scheduled(),
+    queryFn: () => fetchScheduledTasks(userId),
     enabled: userId !== '',
   })
 }

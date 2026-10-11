@@ -29,6 +29,18 @@ export async function fetchTodayTasks(userId: string): Promise<Task[]> {
   return data as Task[]
 }
 
+export async function fetchScheduledTasks(userId: string): Promise<Task[]> {
+  const { data, error } = await supabase
+    .from('tasks')
+    .select('*')
+    .eq('user_id', userId)
+    .not('due_at', 'is', null)
+    .order('due_at', { ascending: true })
+
+  if (error) throw error
+  return data as Task[]
+}
+
 export async function createTask(
   userId: string,
   listId: string | null,

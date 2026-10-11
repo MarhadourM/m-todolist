@@ -4,16 +4,16 @@ import { useDeleteTask, useUpdateTask } from '../features/tasks/hooks'
 import { PRIORITIES, priorityMeta } from '../features/tasks/priority'
 import { formatDue, isOverdue } from '../lib/dates'
 import { DateTimePicker } from './DateTimePicker'
-import type { Task } from '../types'
+import type { Task, TodoList } from '../types'
 
 interface TaskItemProps {
   task: Task
-  listName?: string
+  list?: TodoList
   onDragStart?: (id: string) => void
   onDrop?: (id: string) => void
 }
 
-export function TaskItem({ task, listName, onDragStart, onDrop }: TaskItemProps) {
+export function TaskItem({ task, list, onDragStart, onDrop }: TaskItemProps) {
   const updateTask = useUpdateTask()
   const deleteTask = useDeleteTask()
   const [editing, setEditing] = useState(false)
@@ -144,10 +144,19 @@ export function TaskItem({ task, listName, onDragStart, onDrop }: TaskItemProps)
           {task.title}
         </p>
 
-        {(task.due_at || task.priority > 0 || listName || task.notes) && (
+        {(task.due_at || task.priority > 0 || list || task.notes) && (
           <div className="mt-1 flex flex-wrap items-center gap-2 text-xs">
-            {listName && (
-              <span className="rounded bg-slate-800 px-1.5 py-0.5 text-slate-400">{listName}</span>
+            {list && (
+              <span
+                className="rounded px-1.5 py-0.5 font-medium"
+                style={{
+                  backgroundColor: `${list.color}26`,
+                  color: list.color,
+                  boxShadow: `inset 0 0 0 1px ${list.color}66`,
+                }}
+              >
+                {list.name}
+              </span>
             )}
             {task.due_at && (
               <span
