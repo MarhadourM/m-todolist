@@ -17,7 +17,7 @@ export function AppLayout() {
   return (
     <div className="flex h-screen text-slate-100">
       <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
-        <div className="bg-abstract absolute inset-0" />
+        <div className="bg-abstract-shapes absolute inset-0" />
       </div>
       <div className="hidden md:flex">
         <Sidebar onSignOut={handleSignOut} />
