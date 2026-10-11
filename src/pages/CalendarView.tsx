@@ -96,7 +96,7 @@ export function CalendarView() {
     <div className="h-full p-3 sm:p-5">
       <FullCalendar
         plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
-        initialView="dayGridMonth"
+        initialView="timeGridWeek"
         headerToolbar={{
           left: 'prev,next today',
           center: 'title',
@@ -119,6 +119,14 @@ export function CalendarView() {
         eventClick={handleEventClick}
         dayMaxEvents
         nowIndicator
+        dayCellClassNames={(info) => {
+          if (info.isToday) return ['calendar-today-cell']
+          return []
+        }}
+        dayHeaderClassNames={(info) => {
+          if (info.isToday) return ['calendar-today-header']
+          return []
+        }}
       />
 
       {selected && <TaskEditModal task={selected} onClose={() => setSelected(null)} />}

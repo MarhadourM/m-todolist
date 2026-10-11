@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { Outlet } from 'react-router-dom'
 import { useQueryClient } from '@tanstack/react-query'
 import { useAuth } from '../auth/useAuth'
-import { ReminderManager } from './ReminderManager'
 import { Sidebar } from './Sidebar'
 
 export function AppLayout() {
@@ -16,7 +15,10 @@ export function AppLayout() {
   }
 
   return (
-    <div className="flex h-screen bg-slate-950 text-slate-100">
+    <div className="flex h-screen text-slate-100">
+      <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+        <div className="bg-abstract-shapes absolute inset-0" />
+      </div>
       <div className="hidden md:flex">
         <Sidebar onSignOut={handleSignOut} />
       </div>
@@ -55,7 +57,6 @@ export function AppLayout() {
         </main>
       </div>
 
-      <ReminderManager />
     </div>
   )
 }
