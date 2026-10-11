@@ -4,6 +4,7 @@ import { ProtectedRoute } from './components/ProtectedRoute'
 import { Home } from './pages/Home'
 import { ListView } from './pages/ListView'
 import { Login } from './pages/Login'
+import { TodayView } from './pages/TodayView'
 
 export default function App() {
   return (
@@ -12,6 +13,7 @@ export default function App() {
       <Route element={<ProtectedRoute />}>
         <Route element={<AppLayout />}>
           <Route index element={<Home />} />
+          <Route path="today" element={<TodayView />} />
           <Route path="lists/:listId" element={<ListView />} />
         </Route>
       </Route>
