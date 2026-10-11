@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Outlet } from 'react-router-dom'
 import { useQueryClient } from '@tanstack/react-query'
 import { useAuth } from '../auth/useAuth'
+import { ReminderManager } from './ReminderManager'
 import { Sidebar } from './Sidebar'
 
 export function AppLayout() {
@@ -53,6 +54,8 @@ export function AppLayout() {
           <Outlet />
         </main>
       </div>
+
+      <ReminderManager />
     </div>
   )
 }

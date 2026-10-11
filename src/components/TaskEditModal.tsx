@@ -16,6 +16,7 @@ export function TaskEditModal({ task, onClose }: TaskEditModalProps) {
   const [title, setTitle] = useState(task.title)
   const [notes, setNotes] = useState(task.notes ?? '')
   const [due, setDue] = useState<string | null>(task.due_at)
+  const [remind, setRemind] = useState<string | null>(task.remind_at)
   const [priority, setPriority] = useState(task.priority)
 
   const handleSave = (event: FormEvent) => {
@@ -28,6 +29,7 @@ export function TaskEditModal({ task, onClose }: TaskEditModalProps) {
         title: trimmed,
         notes: notes.trim() ? notes.trim() : null,
         due_at: due,
+        remind_at: remind,
         priority,
       },
     })
@@ -69,6 +71,7 @@ export function TaskEditModal({ task, onClose }: TaskEditModalProps) {
         />
         <div className="flex flex-wrap items-center gap-3">
           <DateTimePicker value={due} onChange={setDue} />
+          <DateTimePicker value={remind} onChange={setRemind} placeholder="Rappel" />
           <label className="flex items-center gap-2 text-xs text-slate-400">
             Priorité
             <select

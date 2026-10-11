@@ -21,6 +21,7 @@ export function TaskItem({ task, list, onDragStart, onDrop }: TaskItemProps) {
   const [title, setTitle] = useState(task.title)
   const [notes, setNotes] = useState(task.notes ?? '')
   const [due, setDue] = useState<string | null>(task.due_at)
+  const [remind, setRemind] = useState<string | null>(task.remind_at)
   const [priority, setPriority] = useState(task.priority)
 
   const meta = priorityMeta(task.priority)
@@ -29,6 +30,7 @@ export function TaskItem({ task, list, onDragStart, onDrop }: TaskItemProps) {
     setTitle(task.title)
     setNotes(task.notes ?? '')
     setDue(task.due_at)
+    setRemind(task.remind_at)
     setPriority(task.priority)
     setEditing(true)
   }
@@ -43,6 +45,7 @@ export function TaskItem({ task, list, onDragStart, onDrop }: TaskItemProps) {
         title: trimmed,
         notes: notes.trim() ? notes.trim() : null,
         due_at: due,
+        remind_at: remind,
         priority,
       },
     })
@@ -75,6 +78,7 @@ export function TaskItem({ task, list, onDragStart, onDrop }: TaskItemProps) {
         />
         <div className="flex flex-wrap items-center gap-3">
           <DateTimePicker value={due} onChange={setDue} />
+          <DateTimePicker value={remind} onChange={setRemind} placeholder="Rappel" />
           <label className="flex items-center gap-2 text-xs text-slate-400">
             Priorité
             <select
@@ -144,7 +148,7 @@ export function TaskItem({ task, list, onDragStart, onDrop }: TaskItemProps) {
           {task.title}
         </p>
 
-        {(task.due_at || task.priority > 0 || list || task.notes) && (
+        {(task.due_at || task.remind_at || task.priority > 0 || list || task.notes) && (
           <div className="mt-1 flex flex-wrap items-center gap-2 text-xs">
             {list && (
               <span
@@ -165,6 +169,15 @@ export function TaskItem({ task, list, onDragStart, onDrop }: TaskItemProps) {
                 }
               >
                 {formatDue(task.due_at)}
+              </span>
+            )}
+            {task.remind_at && (
+              <span className="flex items-center gap-1 text-slate-400">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9" />
+                  <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0" />
+                </svg>
+                {formatDue(task.remind_at)}
               </span>
             )}
             {task.priority > 0 && <span style={{ color: meta.color }}>{meta.label}</span>}

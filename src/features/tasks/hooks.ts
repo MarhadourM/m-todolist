@@ -3,6 +3,7 @@ import { useAuth } from '../../auth/useAuth'
 import {
   createTask,
   deleteTask,
+  fetchDueReminders,
   fetchScheduledTasks,
   fetchTasksByList,
   fetchTodayTasks,
@@ -23,6 +24,7 @@ export function taskKeys(userId: string) {
     byList: (listId: string) => [...all, 'list', listId] as const,
     today: () => [...all, 'today'] as const,
     scheduled: () => [...all, 'scheduled'] as const,
+    reminders: () => [...all, 'reminders'] as const,
   }
 }
 
@@ -50,6 +52,16 @@ export function useScheduledTasks() {
     queryKey: taskKeys(userId).scheduled(),
     queryFn: () => fetchScheduledTasks(userId),
     enabled: userId !== '',
+  })
+}
+
+export function useDueReminders() {
+  const userId = useUserId()
+  return useQuery({
+    queryKey: taskKeys(userId).reminders(),
+    queryFn: () => fetchDueReminders(userId),
+    enabled: userId !== '',
+    refetchInterval: 30_000,
   })
 }
 
